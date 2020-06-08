@@ -1,7 +1,8 @@
 export interface Event {
+    id?: number,
     name: string,
     address: string,
-    date: Date,
+    date: string,
     picture: string
 }
 

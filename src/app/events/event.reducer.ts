@@ -9,7 +9,10 @@ export const initialState: EventsState = {
 export const eventReducer = createReducer(
     initialState, 
     on(eventActions.SetEvents, (state, { payload }) => ({...state, events: payload })),
-    //on(eventActions.CreateEvent, (state, { payload }) => ({...state, events: payload }))
+    on(eventActions.ApiError, (state, { payload }) => {
+      console.log(payload)
+      return state
+    })
     //on(eventActions.RemoveEvent, (state, { payload }) => ({...state, events: payload }))
     //on(eventActions.SetEvents, (state, { payload }) => ({...state, events: payload }))
 )
