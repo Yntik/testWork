@@ -14,12 +14,27 @@ import { HttpEventService } from '../services/http-service/http-event.service'
 export class EventEffects {
   constructor(private actions$: Actions, private store: Store<EventsState>, private eventHttp: HttpEventService) {}
   @Effect()
-  UploadProject$ = this.actions$.pipe(
+  GetEvents$ = this.actions$.pipe(
     ofType(EventActions.GetEvents),
     switchMap(() => {
         return this.eventHttp.getEvents().pipe(
           map((events: Event[]) => {
             return EventActions.SetEvents({payload: events})
+          }),
+          catchError((error) => {
+            return of(EventActions.ApiError({ payload: error }))
+          })
+        )
+    }),
+  )
+
+  @Effect()
+  CreateEvent$ = this.actions$.pipe(
+    ofType(EventActions.CreateEvent),
+    switchMap(({ payload }) => {
+        return this.eventHttp.addEvent(payload).pipe(
+          map((event: Event) => {
+            return EventActions.GetEvents()
           }),
           catchError((error) => {
             return of(EventActions.ApiError({ payload: error }))
