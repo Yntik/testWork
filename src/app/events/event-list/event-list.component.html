@@ -1,1 +1,25 @@
-<p>event-list works!</p>
+<div>
+    <div class="title">HOME</div>
+    <div class="events-container">
+        <div class="event" *ngFor="let event of events">
+            <div class="event_picture-wrp">
+                <img [src]="event.picture" alt="">
+            </div>
+            <div class="event_footer">
+                <div class="event_footer_name">
+                    {{event.name}}
+                </div>
+                <div class="event_footer_address">
+                    {{event.address}}
+                </div>
+                <div class="event_footer_date">
+                    {{event.date}}
+                </div>
+            </div>
+        </div>
+        <div class="add-more">
+            <span class="add-more_icon">+</span>
+            <h1>Add more</h1>
+        </div>
+    </div>
+</div>
