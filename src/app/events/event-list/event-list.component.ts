@@ -4,6 +4,7 @@ import * as eventActions from '../event.actions'
 import * as fromEvent from '../event.selectors'
 import { Event } from '../../store/models'
 import { Observable } from 'rxjs';
+import { HttpEventService } from '../../services/http-service/http-event.service'
 
 @Component({
   selector: 'app-event-list',
@@ -12,11 +13,11 @@ import { Observable } from 'rxjs';
 })
 export class EventListComponent implements OnInit {
   events:  Observable<Event[]>
-  constructor(private store: Store<Event[]>) { }
+  constructor(private store: Store<Event[]>, private eventHttp: HttpEventService) { }
 
   ngOnInit(): void {
     this.events = this.store.select(fromEvent.selectEvent)
-
+    this.store.dispatch(eventActions.GetEvents())
     this.events.subscribe((val) => {
       console.log(val)
     })
