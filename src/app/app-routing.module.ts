@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'add-event',
     component: AddEventComponent
+  },
+  { path: '',
+    redirectTo: 'event-list',
+    pathMatch: 'full' 
   }
 ];
 
