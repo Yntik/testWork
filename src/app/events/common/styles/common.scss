@@ -1,0 +1,20 @@
+.title {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 42px;
+    height: 42px;
+}
+
+.page-container {
+    width: 50%;
+    margin: 0 auto;
+
+    .head-container {
+        display: flex;
+        align-items: center;
+
+        .back-button {
+            cursor: pointer;
+        }
+    }
+}
