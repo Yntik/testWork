@@ -1,4 +1,4 @@
-import { Event, EventsState } from '../store/models';
+import { EventsState } from '../store/models';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 export const eventsSelectorKey = 'events';

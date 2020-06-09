@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,10 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class AppComponent {
   title = 'testwork';
-  currentRoute: string = ''
-  constructor(private activeRoute: ActivatedRoute, private router: Router  ){
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) this.currentRoute = event.urlAfterRedirects
-    })
+  currentRoute = '';
+  constructor(private activeRoute: ActivatedRoute, private router: Router) {
+    this.router.events.subscribe((event): void => {
+      if (event instanceof NavigationEnd) { this.currentRoute = event.urlAfterRedirects; }
+    });
   }
 }
