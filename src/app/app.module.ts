@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { StoreModule } from '@ngrx/store';
 import { EventsModule } from './events/events.module';
-import { reducers } from './store/app.reducer'
+import { reducers } from './store/app.reducer';
 
 @NgModule({
   declarations: [
