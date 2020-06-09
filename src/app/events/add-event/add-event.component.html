@@ -1,0 +1,58 @@
+<div>
+    <div class="title">Add event</div>
+    <div class="form-container">
+        <div class="form">
+            <form [formGroup]="eventForm">
+                <div class="form-field">
+                    <label for="">Event name</label>
+                    <input formControlName="eventName" type="text">
+                    <div *ngIf="eventForm.get('eventName').dirty && eventForm.get('eventName').errors && eventForm.get('eventName').errors.required " class="form-field_error">
+                        This field is required
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="">Address</label>
+                    <input formControlName="address" type="text">
+                    <div *ngIf="eventForm.get('address').dirty && eventForm.get('address').errors && eventForm.get('address').errors.required" class="form-field_error">
+                        This field is required
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="">Date</label>
+                    <dp-date-picker formControlName="date"></dp-date-picker>
+                    <div *ngIf="eventForm.get('date').errors && eventForm.get('date').errors.format" class="form-field_error">
+                        It's not a image valid format
+                    </div> 
+                </div>
+                <div class="form_actions">
+                    <button [disabled]="eventForm.invalid" (click)="addEvent()">
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="event event-preview">
+            <div class="event-preview_picture-wrp">
+                <img *ngIf="readerStatus === 'loaded'" [src]="eventForm.get('file').value" alt="">
+                <input #inputFile accept="image/*" type="file" (change)="uploadFile(inputFile)">
+                <div class="hint" *ngIf="readerStatus === 'notLoaded'">
+                    click hero for choose image
+                </div>
+            </div>
+            <div class="event-preview_footer">
+                <div class="event-preview_footer_name">
+                    {{event.name}}
+                </div>
+                <div class="event-preview_footer_address">
+                    {{event.address}}
+                </div>
+                <div class="event-preview_footer_date">
+                    {{event.date}}
+                </div>
+            </div>
+            <div *ngIf="readerStatus === 'notValidFormat'" class="form-field_error">
+                It's not a image
+            </div>
+        </div>
+    </div>
+</div>

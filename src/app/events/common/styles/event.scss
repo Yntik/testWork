@@ -1,0 +1,36 @@
+.event, .add-more {
+    width: 175px;
+    height: 215px;
+}
+.event, .event-preview {
+    margin: 10px;
+    display: grid;
+    grid-template-rows: 65% 35%;
+    &_picture-wrp {
+        img {
+            width: 175px;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    &_footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        background: #DD005D;
+        padding: 5px;
+        &_name {
+            font-weight: 900;
+            font-size: 36px;
+            line-height: 42px;
+            grid-column: 1 / span 2;
+        }
+        &_address, &_date {
+            align-self: end;
+        }
+        &_date{
+            text-align: right;
+        }
+
+    }
+}
