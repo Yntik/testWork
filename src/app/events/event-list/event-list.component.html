@@ -1,4 +1,4 @@
-<div>
+<div class="page-container">
     <div class="title">HOME</div>
     <div class="events-container">
         <div class="event" *ngFor="let event of events">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="add-more">
+        <div class="add-more" (click)="addEvent()">
             <span class="add-more_icon">+</span>
             <h1>Add more</h1>
         </div>

@@ -4,7 +4,7 @@ import * as eventActions from '../event.actions'
 import * as fromEvent from '../event.selectors'
 import { Event } from '../../store/models'
 import { Observable } from 'rxjs';
-import { HttpEventService } from '../../services/http-service/http-event.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -12,15 +12,17 @@ import { HttpEventService } from '../../services/http-service/http-event.service
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-  events:  Observable<Event[]>
-  constructor(private store: Store<Event[]>, private eventHttp: HttpEventService) { }
+  events:  Event[]
+  constructor(private store: Store<Event[]>, private router: Router) { }
 
   ngOnInit(): void {
-    this.events = this.store.select(fromEvent.selectEvent)
-    this.store.dispatch(eventActions.GetEvents())
-    this.events.subscribe((val) => {
-      console.log(val)
+    this.store.select(fromEvent.selectEvent).subscribe((events) => {
+      this.events = events
     })
+    this.store.dispatch(eventActions.GetEvents())
   }
 
+  addEvent() {
+    this.router.navigate(['add-event'])
+  }
 }
